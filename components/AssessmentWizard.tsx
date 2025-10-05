@@ -1,21 +1,22 @@
-
 import React, { useState } from 'react';
 import Step1Location from './Step1Location';
 import Step2SiteDetails from './Step2SiteDetails';
-import type { AssessmentData } from '../types';
+import type { AssessmentData, Language } from '../types';
 import { RoofMaterial } from '../types';
+import { useTranslations } from '../hooks/useTranslations';
 
 interface AssessmentWizardProps {
   onSubmit: (data: AssessmentData) => void;
   error: string | null;
+  language: Language;
 }
 
-const AssessmentWizard: React.FC<AssessmentWizardProps> = ({ onSubmit, error }) => {
+const AssessmentWizard: React.FC<AssessmentWizardProps> = ({ onSubmit, error, language }) => {
   const [step, setStep] = useState(1);
   const [data, setData] = useState<Partial<AssessmentData>>({
     roofMaterial: RoofMaterial.RCC,
-    householdSize: 4,
   });
+  const t = useTranslations(language);
 
   const handleStep1Next = (step1Data: Pick<AssessmentData, 'lat' | 'lng' | 'roofArea' | 'roofMaterial'>) => {
     setData(prev => ({ ...prev, ...step1Data }));
@@ -32,7 +33,7 @@ const AssessmentWizard: React.FC<AssessmentWizardProps> = ({ onSubmit, error }) 
       <div className="max-w-4xl mx-auto bg-white p-8 border-2 border-gray-400">
         {error && (
             <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mb-6" role="alert">
-                <strong className="font-bold">Assessment Failed: </strong>
+                <strong className="font-bold">{t('wizard.errorTitle')} </strong>
                 <span className="block sm:inline">{error}</span>
             </div>
         )}
@@ -43,6 +44,7 @@ const AssessmentWizard: React.FC<AssessmentWizardProps> = ({ onSubmit, error }) 
               roofArea: data.roofArea,
               roofMaterial: data.roofMaterial,
             }}
+            language={language}
           />
         )}
         {step === 2 && (
@@ -53,6 +55,7 @@ const AssessmentWizard: React.FC<AssessmentWizardProps> = ({ onSubmit, error }) 
               openSpace: data.openSpace,
               householdSize: data.householdSize,
             }}
+            language={language}
           />
         )}
       </div>

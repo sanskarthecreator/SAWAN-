@@ -1,5 +1,7 @@
 {
   "name": "Sawan: Rooftop Rainwater Harvesting Planner",
   "description": "A comprehensive web application to help homeowners in India assess the potential for rooftop rainwater harvesting (RTRWH) and artificial groundwater recharge, providing data-driven analysis, actionable recommendations, and a clear financial breakdown.",
-  "requestFramePermissions": []
+  "requestFramePermissions": [
+    "geolocation"
+  ]
 }

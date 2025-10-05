@@ -1,0 +1,97 @@
+{
+  "header": {
+    "title": "Sawan Planner",
+    "newAssessment": "Start New Assessment"
+  },
+  "landingPage": {
+    "heroTitle": "Assess Your Rooftop Rainwater Harvesting Potential",
+    "heroSubtitle": "Get a data-driven analysis of how much water you can save and how to recharge groundwater, complete with personalized recommendations, cost estimates, and a feasibility score.",
+    "startAssessment": "Start New Assessment",
+    "howItWorksTitle": "How It Works",
+    "feature1Title": "1. Location-Specific Analysis",
+    "feature1Text": "Uses local rainfall and groundwater data to estimate your rainwater harvesting potential.",
+    "feature2Title": "2. AI-Powered Recommendations",
+    "feature2Text": "Calculates harvestable water, suggests suitable recharge structures, and provides cost estimates.",
+    "feature3Title": "3. Detailed PDF Reports",
+    "feature3Text": "Download a complete summary of your assessment for your records and planning."
+  },
+  "wizard": {
+    "errorTitle": "Assessment Failed:",
+    "step1": {
+      "title": "Step 1: Location & Roof Details",
+      "subtitle": "Use the map tools to outline your roof. The area will be calculated automatically, but you can adjust it manually below.",
+      "locateMe": "Locate Me",
+      "drawRoof": "Draw Roof Area",
+      "clearSelection": "Clear Selection",
+      "instruction": {
+        "start": "Click 'Draw Roof Area' to start.",
+        "drawing": "Click corner {{count}} of 4",
+        "done": "Roof area drawn. You can now proceed."
+      },
+      "roofAreaLabel": "Rooftop Area (m²)",
+      "roofAreaPlaceholder": "e.g., 150",
+      "roofAreaHelper": "Auto-calculated from map, but can be edited.",
+      "roofMaterialLabel": "Rooftop Material",
+      "nextButton": "Next"
+    },
+    "step2": {
+      "title": "Step 2: Site & Household Details",
+      "subtitle": "Provide a few more details to refine the assessment.",
+      "openSpaceLabel": "Available Open Ground Space (m²)",
+      "openSpacePlaceholder": "e.g., 20",
+      "openSpaceHelper": "Permeable ground area for recharge structures.",
+      "householdSizeLabel": "Number of People in Household",
+      "householdSizePlaceholder": "e.g., 4",
+      "backButton": "Back",
+      "getAssessmentButton": "Get Assessment"
+    }
+  },
+  "loading": {
+    "title": "Generating Your Report",
+    "messages": [
+      "Consulting our Hydrogeology AI...",
+      "Analyzing local rainfall patterns...",
+      "Estimating groundwater levels...",
+      "Designing optimal recharge structures...",
+      "Calculating your potential savings...",
+      "Creating your custom rainwater harvesting plan..."
+    ]
+  },
+  "results": {
+    "title": "Assessment Results",
+    "reportFor": "Report for: {{location}}",
+    "feasibilityScore": "Feasibility Score:",
+    "potential": {
+      "High": "High Potential",
+      "Moderate": "Moderate Potential",
+      "Low": "Low Potential"
+    },
+    "feasibilitySubtitle": "Based on your inputs and publicly available data for the {{location}} region.",
+    "rwhPotentialTitle": "Net RWH Potential",
+    "annualHarvestVolume": "Annual Harvestable Volume:",
+    "annualHarvestVolumeUnit": "{{volume}} m³ / year (~ {{liters}} Liters)",
+    "monsoonHarvest": "Monsoon Harvest:",
+    "monsoonHarvestUnit": "{{volume}} m³",
+    "avgRainfall": "Avg. Annual Rainfall ({{location}}):",
+    "avgRainfallUnit": "{{rainfall}} mm",
+    "rwhNote": "Net estimate including roof type and 10% system loss factor.",
+    "financialTitle": "Financial Snapshot",
+    "annualSavings": "Estimated Annual Savings:",
+    "paybackPeriod": "Payback Period:",
+    "paybackPeriodValue": "{{period}} years",
+    "notApplicable": "N/A",
+    "estimatedCost": "Total Estimated Cost:",
+    "rechargeTitle": "Recommended Recharge Unit(s)",
+    "rechargeCount": "{{count}} × {{type}}",
+    "totalCapacity": "Total Capacity: {{capacity}} m³",
+    "dimensions": "Dimensions: {{dimensions}}",
+    "noStructure": "No recharge structure is recommended based on the calculated runoff volume and available space.",
+    "aquiferTitle": "Local Aquifer Data",
+    "groundwaterDepth": "Avg. Depth to Groundwater ({{location}}):",
+    "groundwaterDepthValue": "{{depth}} meters",
+    "hydroNoteTitle": "Hydrogeologist's Note:",
+    "hydroNoteDisclaimer": "(Note: This note is AI-generated in English for technical accuracy.)",
+    "downloadPdfButton": "Download PDF Report",
+    "startNewButton": "Start New Assessment"
+  }
+}

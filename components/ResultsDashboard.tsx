@@ -1,15 +1,17 @@
-
 import React, { useRef } from 'react';
-import type { ResultsData } from '../types';
+import type { ResultsData, Language } from '../types';
+import { useTranslations } from '../hooks/useTranslations';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
 interface ResultsDashboardProps {
   results: ResultsData;
   onStartNew: () => void;
+  language: Language;
 }
 
-const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ results, onStartNew }) => {
+const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ results, onStartNew, language }) => {
+    const t = useTranslations(language);
     const reportRef = useRef<HTMLDivElement>(null);
 
     const handleDownloadPdf = () => {
@@ -64,54 +66,56 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ results, onStartNew
     return (
         <div className="container mx-auto px-4 py-12">
             <div ref={reportRef} className="bg-white p-4 sm:p-8 border-2 border-gray-400">
-                <h2 className="text-3xl font-bold mb-4 border-b-2 pb-2">Assessment Results</h2>
+                <h2 className="text-3xl font-bold mb-4 border-b-2 pb-2">{t('results.title')}</h2>
+                <p className="text-lg text-gray-700 -mt-2 mb-4">{t('results.reportFor', { location: results.locationName })}</p>
                 
                 <div className="mb-6">
-                    <h3 className="text-2xl font-bold">Feasibility Score: <span className={feasibilityStyles[results.feasibilityScore]}>{results.feasibilityScore} Potential</span></h3>
-                    <p className="text-sm text-gray-600">Based on your location, roof, and site data.</p>
+                    <h3 className="text-2xl font-bold">{t('results.feasibilityScore')} <span className={feasibilityStyles[results.feasibilityScore]}>{t(`results.potential.${results.feasibilityScore}`)}</span></h3>
+                    <p className="text-sm text-gray-600">{t('results.feasibilitySubtitle', { location: results.locationName })}</p>
                 </div>
 
                 <div className="space-y-6">
                     <div className="p-4 border border-gray-300">
-                        <h4 className="text-xl font-bold mb-2">Net RWH Potential</h4>
-                        <p><span className="font-bold">Annual Harvestable Volume:</span> {results.annualHarvestableVolume.toLocaleString()} m³ / year (~ {(results.annualHarvestableVolume * 1000).toLocaleString()} Liters)</p>
-                        <p><span className="font-bold">Monsoon Harvest:</span> {results.monsoonHarvestVolume.toLocaleString()} m³</p>
-                        <p><span className="font-bold">Avg. Annual Rainfall:</span> {results.averageAnnualRainfall.toLocaleString()} mm</p>
-                        <p className="text-xs text-gray-500 mt-2 italic">Net estimate including roof type and 10% system loss factor.</p>
+                        <h4 className="text-xl font-bold mb-2">{t('results.rwhPotentialTitle')}</h4>
+                        <p><span className="font-bold">{t('results.annualHarvestVolume')}</span> {t('results.annualHarvestVolumeUnit', { volume: results.annualHarvestableVolume.toLocaleString(), liters: (results.annualHarvestableVolume * 1000).toLocaleString() })}</p>
+                        <p><span className="font-bold">{t('results.monsoonHarvest')}</span> {t('results.monsoonHarvestUnit', { volume: results.monsoonHarvestVolume.toLocaleString() })}</p>
+                        <p><span className="font-bold">{t('results.avgRainfall', { location: results.locationName })}</span> {t('results.avgRainfallUnit', { rainfall: results.averageAnnualRainfall.toLocaleString() })}</p>
+                        <p className="text-xs text-gray-500 mt-2 italic">{t('results.rwhNote')}</p>
                     </div>
 
                     <div className="p-4 border border-gray-300">
-                        <h4 className="text-xl font-bold mb-2">Financial Snapshot</h4>
-                        <p><span className="font-bold">Estimated Annual Savings:</span> ₹{results.estimatedAnnualSavings.toLocaleString()}</p>
-                        <p><span className="font-bold">Payback Period:</span> {results.paybackPeriod ? `${results.paybackPeriod.toFixed(1)} years` : 'N/A'}</p>
-                        <p><span className="font-bold">Total Estimated Cost:</span> ₹{results.totalEstimatedCost.toLocaleString()}</p>
+                        <h4 className="text-xl font-bold mb-2">{t('results.financialTitle')}</h4>
+                        <p><span className="font-bold">{t('results.annualSavings')}</span> ₹{results.estimatedAnnualSavings.toLocaleString()}</p>
+                        <p><span className="font-bold">{t('results.paybackPeriod')}</span> {results.paybackPeriod ? t('results.paybackPeriodValue', { period: results.paybackPeriod.toFixed(1) }) : t('results.notApplicable')}</p>
+                        <p><span className="font-bold">{t('results.estimatedCost')}</span> ₹{results.totalEstimatedCost.toLocaleString()}</p>
                     </div>
 
                      <div className="p-4 border border-gray-300">
-                        <h4 className="text-xl font-bold mb-2">Recommended Recharge Unit(s)</h4>
+                        <h4 className="text-xl font-bold mb-2">{t('results.rechargeTitle')}</h4>
                          {results.recommendedStructures.length > 0 ? (
                             <ul className="list-disc list-inside">
                                 {results.recommendedStructures.map((s, i) => (
                                     <li key={i}>
-                                        <span className="font-bold">{s.count} &times; {s.type}</span>
+                                        <span className="font-bold">{t('results.rechargeCount', { count: s.count, type: s.type })}</span>
                                         <ul className="list-none ml-6 text-sm">
-                                            <li>Total Capacity: {s.capacity} m³</li>
-                                            <li>Dimensions: {s.dimensions}</li>
+                                            <li>{t('results.totalCapacity', { capacity: s.capacity })}</li>
+                                            <li>{t('results.dimensions', { dimensions: s.dimensions })}</li>
                                         </ul>
                                     </li>
                                 ))}
                             </ul>
                         ) : (
-                            <p>No recharge structure is recommended based on the calculated runoff volume and available space.</p>
+                            <p>{t('results.noStructure')}</p>
                         )}
                     </div>
 
                     <div className="p-4 border border-gray-300">
-                        <h4 className="text-xl font-bold mb-2">Local Aquifer Data</h4>
-                        <p><span className="font-bold">Avg. Depth to Groundwater:</span> {results.averageDepthToGroundwater.toFixed(1)} meters</p>
+                        <h4 className="text-xl font-bold mb-2">{t('results.aquiferTitle')}</h4>
+                        <p><span className="font-bold">{t('results.groundwaterDepth', { location: results.locationName })}</span> {t('results.groundwaterDepthValue', { depth: results.averageDepthToGroundwater.toFixed(1) })}</p>
                         <div className="mt-2">
-                            <p className="font-bold">Hydrogeologist's Note:</p>
+                            <p className="font-bold">{t('results.hydroNoteTitle')}</p>
                             <p className="text-gray-700 text-sm">{results.aquiferNote}</p>
+                            <p className="text-xs text-gray-500 mt-1 italic">{t('results.hydroNoteDisclaimer')}</p>
                         </div>
                     </div>
                 </div>
@@ -122,13 +126,13 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ results, onStartNew
                     onClick={handleDownloadPdf}
                     className="w-full sm:w-auto px-6 py-3 text-white bg-blue-600 hover:bg-blue-700"
                 >
-                    Download PDF Report
+                    {t('results.downloadPdfButton')}
                 </button>
                 <button
                     onClick={onStartNew}
                     className="w-full sm:w-auto px-6 py-3 border border-gray-400 text-black bg-gray-200 hover:bg-gray-300"
                 >
-                    Start New Assessment
+                    {t('results.startNewButton')}
                 </button>
             </div>
         </div>

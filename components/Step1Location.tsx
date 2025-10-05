@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Polygon, useMapEvents } from 'react-leaflet';
 import L, { LatLng, Map } from 'leaflet';
 import * as turf from '@turf/turf';
-import { RoofMaterial } from '../types';
+import { RoofMaterial, Language } from '../types';
+import { useTranslations } from '../hooks/useTranslations';
 
 interface Step1LocationProps {
     onNext: (data: { lat: number; lng: number; roofArea: number; roofMaterial: RoofMaterial }) => void;
     initialData: { roofArea?: number; roofMaterial?: RoofMaterial };
+    language: Language;
 }
 
 const ROOF_MATERIAL_OPTIONS = [
@@ -17,7 +19,8 @@ const ROOF_MATERIAL_OPTIONS = [
     { value: RoofMaterial.THATCH, label: 'Thatch' },
 ];
 
-const Step1Location: React.FC<Step1LocationProps> = ({ onNext, initialData }) => {
+const Step1Location: React.FC<Step1LocationProps> = ({ onNext, initialData, language }) => {
+    const t = useTranslations(language);
     const [map, setMap] = useState<Map | null>(null);
     const [center] = useState<L.LatLngExpression>([20.5937, 78.9629]); // Default to India
     const [isDrawing, setIsDrawing] = useState(false);
@@ -108,18 +111,18 @@ const Step1Location: React.FC<Step1LocationProps> = ({ onNext, initialData }) =>
 
     const getInstruction = () => {
         if (isDrawing) {
-            return `Click corner ${points.length + 1} of 4`;
+            return t('wizard.step1.instruction.drawing', { count: points.length + 1 });
         }
         if (points.length === 4) {
-            return "Roof area drawn. You can now proceed.";
+            return t('wizard.step1.instruction.done');
         }
-        return "Click 'Draw Roof Area' to start.";
+        return t('wizard.step1.instruction.start');
     };
 
     return (
         <form onSubmit={handleSubmit}>
-            <h2 className="text-2xl font-bold mb-2">Step 1: Location & Roof Details</h2>
-            <p className="text-gray-600 mb-6">Use the map tools to outline your roof. The area will be calculated automatically, but you can adjust it manually below.</p>
+            <h2 className="text-2xl font-bold mb-2">{t('wizard.step1.title')}</h2>
+            <p className="text-gray-600 mb-6">{t('wizard.step1.subtitle')}</p>
             
             <div className="h-96 md:h-[500px] mb-4 relative border-2 border-gray-400">
                  <MapContainer center={center} zoom={5} scrollWheelZoom={true} className="h-full w-full" ref={setMap}>
@@ -131,9 +134,9 @@ const Step1Location: React.FC<Step1LocationProps> = ({ onNext, initialData }) =>
                     <MapEventsHandler />
                 </MapContainer>
                 <div className="absolute top-2 left-2 z-[1000] flex flex-col space-y-2">
-                    <button type="button" onClick={handleLocateMe} className="bg-white p-2 border border-gray-400">Locate Me</button>
-                    <button type="button" onClick={handleDrawStart} disabled={isDrawing} className="bg-white p-2 border border-gray-400 disabled:bg-gray-200">Draw Roof Area</button>
-                    <button type="button" onClick={handleClearSelection} className="bg-white p-2 border border-gray-400">Clear Selection</button>
+                    <button type="button" onClick={handleLocateMe} className="bg-white p-2 border border-gray-400">{t('wizard.step1.locateMe')}</button>
+                    <button type="button" onClick={handleDrawStart} disabled={isDrawing} className="bg-white p-2 border border-gray-400 disabled:bg-gray-200">{t('wizard.step1.drawRoof')}</button>
+                    <button type="button" onClick={handleClearSelection} className="bg-white p-2 border border-gray-400">{t('wizard.step1.clearSelection')}</button>
                 </div>
                 <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-[1000] bg-white/80 px-4 py-2 text-sm font-medium text-black border border-gray-400">
                     {getInstruction()}
@@ -142,20 +145,21 @@ const Step1Location: React.FC<Step1LocationProps> = ({ onNext, initialData }) =>
 
             <div className="grid md:grid-cols-2 gap-6 mt-6">
                 <div>
-                    <label htmlFor="roofArea" className="block text-sm font-medium text-gray-700 mb-1">Rooftop Area (m²)</label>
+                    <label htmlFor="roofArea" className="block text-sm font-medium text-gray-700 mb-1">{t('wizard.step1.roofAreaLabel')}</label>
                     <input
                         type="number"
                         id="roofArea"
                         value={roofArea}
                         onChange={(e) => setRoofArea(e.target.value)}
                         className="w-full px-3 py-2 bg-white border border-gray-400 focus:outline-blue-500"
-                        placeholder="e.g., 150"
+                        // FIX: Cast translation result to string for placeholder attribute.
+                        placeholder={t('wizard.step1.roofAreaPlaceholder') as string}
                         required
                     />
-                     <p className="text-xs text-gray-500 mt-1">Auto-calculated from map, but can be edited.</p>
+                     <p className="text-xs text-gray-500 mt-1">{t('wizard.step1.roofAreaHelper')}</p>
                 </div>
                 <div>
-                    <label htmlFor="roofMaterial" className="block text-sm font-medium text-gray-700 mb-1">Rooftop Material</label>
+                    <label htmlFor="roofMaterial" className="block text-sm font-medium text-gray-700 mb-1">{t('wizard.step1.roofMaterialLabel')}</label>
                     <select
                         id="roofMaterial"
                         value={roofMaterial}
@@ -175,7 +179,7 @@ const Step1Location: React.FC<Step1LocationProps> = ({ onNext, initialData }) =>
                     disabled={isNextDisabled}
                     className="px-6 py-3 text-white bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
                 >
-                    Next
+                    {t('wizard.step1.nextButton')}
                 </button>
             </div>
         </form>

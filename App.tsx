@@ -1,11 +1,12 @@
-
 import React, { useState, useCallback } from 'react';
 import LandingPage from './components/LandingPage';
 import AssessmentWizard from './components/AssessmentWizard';
 import LoadingScreen from './components/LoadingScreen';
 import ResultsDashboard from './components/ResultsDashboard';
+import LanguageSelector from './components/LanguageSelector';
 import { getAssessment } from './services/geminiService';
-import type { AssessmentData, ResultsData } from './types';
+import { useTranslations } from './hooks/useTranslations';
+import type { AssessmentData, ResultsData, Language } from './types';
 
 type View = 'landing' | 'wizard' | 'loading' | 'results';
 
@@ -13,6 +14,8 @@ const App: React.FC = () => {
   const [view, setView] = useState<View>('landing');
   const [results, setResults] = useState<ResultsData | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [language, setLanguage] = useState<Language>('en');
+  const t = useTranslations(language);
 
   const handleStartAssessment = () => {
     setView('wizard');
@@ -37,39 +40,39 @@ const App: React.FC = () => {
   const renderView = () => {
     switch (view) {
       case 'landing':
-        return <LandingPage onStart={handleStartAssessment} />;
+        return <LandingPage onStart={handleStartAssessment} language={language} />;
       case 'wizard':
-        return <AssessmentWizard onSubmit={handleGetAssessment} error={error} />;
+        return <AssessmentWizard onSubmit={handleGetAssessment} error={error} language={language} />;
       case 'loading':
-        return <LoadingScreen />;
+        return <LoadingScreen language={language} />;
       case 'results':
-        return results ? <ResultsDashboard results={results} onStartNew={handleStartAssessment} /> : <LoadingScreen />;
+        return results ? <ResultsDashboard results={results} onStartNew={handleStartAssessment} language={language} /> : <LoadingScreen language={language} />;
       default:
-        return <LandingPage onStart={handleStartAssessment} />;
+        return <LandingPage onStart={handleStartAssessment} language={language} />;
     }
   };
 
   return (
-    <div className="bg-white min-h-screen text-black font-serif">
+    <div className="bg-white min-h-screen text-black font-sans">
       <header className="bg-gray-100 border-b-2 border-gray-300">
         <nav className="container mx-auto px-4 py-2 flex items-center justify-between">
-          <h1 className="text-3xl">Sawan Planner</h1>
-          {view !== 'landing' && (
-            <button
-              onClick={handleStartAssessment}
-              className="px-4 py-2 bg-gray-300 border border-gray-400 text-black"
-            >
-              Start New Assessment
-            </button>
-          )}
+          <h1 className="text-3xl">{t('header.title')}</h1>
+          <div className="flex items-center gap-4">
+            {view !== 'landing' && (
+              <button
+                onClick={handleStartAssessment}
+                className="px-4 py-2 bg-gray-300 border border-gray-400 text-black"
+              >
+                {t('header.newAssessment')}
+              </button>
+            )}
+             <LanguageSelector currentLanguage={language} onChange={setLanguage} />
+          </div>
         </nav>
       </header>
       <main>
         {renderView()}
       </main>
-       <footer className="text-center py-4 mt-8 border-t-2 border-gray-300 text-sm text-gray-500">
-          <p>&copy; {new Date().getFullYear()} Sawan Planner. All rights reserved.</p>
-      </footer>
     </div>
   );
 };

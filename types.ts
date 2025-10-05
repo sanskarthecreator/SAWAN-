@@ -1,3 +1,4 @@
+import type { LatLng } from 'leaflet';
 
 export enum RoofMaterial {
   RCC = 'rcc',
@@ -6,6 +7,16 @@ export enum RoofMaterial {
   ASPHALT = 'asphalt',
   THATCH = 'thatch',
 }
+
+export type Language = 'en' | 'hi' | 'bn' | 'ta' | 'te';
+
+export const LANGUAGES: { code: Language; name: string }[] = [
+  { code: 'en', name: 'English' },
+  { code: 'hi', name: 'हिन्दी' },
+  { code: 'bn', name: 'বাংলা' },
+  { code: 'ta', name: 'தமிழ்' },
+  { code: 'te', name: 'తెలుగు' },
+];
 
 export interface AssessmentData {
   lat: number;
@@ -34,4 +45,5 @@ export interface ResultsData {
   recommendedStructures: RecommendedStructure[];
   averageDepthToGroundwater: number;
   aquiferNote: string;
+  locationName: string;
 }
