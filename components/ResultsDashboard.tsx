@@ -112,11 +112,6 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ results, onStartNew
                     <div className="p-4 border border-gray-300">
                         <h4 className="text-xl font-bold mb-2">{t('results.aquiferTitle')}</h4>
                         <p><span className="font-bold">{t('results.groundwaterDepth', { location: results.locationName })}</span> {t('results.groundwaterDepthValue', { depth: results.averageDepthToGroundwater.toFixed(1) })}</p>
-                        <div className="mt-2">
-                            <p className="font-bold">{t('results.hydroNoteTitle')}</p>
-                            <p className="text-gray-700 text-sm">{results.aquiferNote}</p>
-                            <p className="text-xs text-gray-500 mt-1 italic">{t('results.hydroNoteDisclaimer')}</p>
-                        </div>
                     </div>
                 </div>
             </div>

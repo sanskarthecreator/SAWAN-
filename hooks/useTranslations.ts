@@ -94,8 +94,6 @@ const en = {
     "aquiferTitle": "Local Aquifer Data",
     "groundwaterDepth": "Avg. Depth to Groundwater ({{location}}):",
     "groundwaterDepthValue": "{{depth}} meters",
-    "hydroNoteTitle": "Hydrogeologist's Note:",
-    "hydroNoteDisclaimer": "(Note: This note is AI-generated in English for technical accuracy.)",
     "downloadPdfButton": "Download PDF Report",
     "startNewButton": "Start New Assessment"
   }
@@ -191,8 +189,6 @@ const hi = {
     "aquiferTitle": "स्थानीय जलभृत डेटा",
     "groundwaterDepth": "भूजल की औसत गहराई ({{location}}):",
     "groundwaterDepthValue": "{{depth}} मीटर",
-    "hydroNoteTitle": "हाइड्रोजियोलॉजिस्ट की टिप्पणी:",
-    "hydroNoteDisclaimer": "(नोट: यह टिप्पणी तकनीकी सटीकता के लिए एआई द्वारा अंग्रेजी में उत्पन्न की गई है।)",
     "downloadPdfButton": "पीडीएफ रिपोर्ट डाउनलोड करें",
     "startNewButton": "नया मूल्यांकन शुरू करें"
   }
@@ -288,8 +284,6 @@ const bn = {
     "aquiferTitle": "স্থানীয় ভূগর্ভস্থ জলস্তর ডেটা",
     "groundwaterDepth": "ভূগর্ভস্থ জলের গড় গভীরতা ({{location}}):",
     "groundwaterDepthValue": "{{depth}} মিটার",
-    "hydroNoteTitle": "হাইড্রোজোলজিস্টের নোট:",
-    "hydroNoteDisclaimer": "(দ্রষ্টব্য: এই নোটটি প্রযুক্তিগত নির্ভুলতার জন্য এআই দ্বারা ইংরেজিতে তৈরি করা হয়েছে।)",
     "downloadPdfButton": "পিডিএফ রিপোর্ট ডাউনলোড করুন",
     "startNewButton": "নতুন মূল্যায়ন শুরু করুন"
   }
@@ -385,8 +379,6 @@ const ta = {
     "aquiferTitle": "உள்ளூர் நிலத்தடி நீர் தரவு",
     "groundwaterDepth": "நிலத்தடி நீரின் சராசரி ஆழம் ({{location}}):",
     "groundwaterDepthValue": "{{depth}} மீட்டர்கள்",
-    "hydroNoteTitle": "ஹைட்ரோஜியாலஜிஸ்ட் குறிப்பு:",
-    "hydroNoteDisclaimer": "(குறிப்பு: இந்தக் குறிப்பு தொழில்நுட்பத் துல்லியத்திற்காக AI மூலம் ஆங்கிலத்தில் உருவாக்கப்பட்டது.)",
     "downloadPdfButton": "PDF அறிக்கையைப் பதிவிறக்கு",
     "startNewButton": "புதிய மதிப்பீட்டைத் தொடங்கு"
   }
@@ -482,8 +474,6 @@ const te = {
     "aquiferTitle": "స్థానిక జలాశయ డేటా",
     "groundwaterDepth": "భూగర్భ జలాల సగటు లోతు ({{location}}):",
     "groundwaterDepthValue": "{{depth}} మీటర్లు",
-    "hydroNoteTitle": "హైడ్రోజియాలజిస్ట్ గమనిక:",
-    "hydroNoteDisclaimer": "(గమనిక: ఈ గమనిక సాంకేతిక ఖచ్చితత్వం కోసం AI ద్వారా ఆంగ్లంలో రూపొందించబడింది.)",
     "downloadPdfButton": "PDF నివేదికను డౌన్‌లోడ్ చేయండి",
     "startNewButton": "కొత్త మదింపును ప్రారంభించండి"
   }

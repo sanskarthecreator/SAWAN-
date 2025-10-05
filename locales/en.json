@@ -89,8 +89,6 @@
     "aquiferTitle": "Local Aquifer Data",
     "groundwaterDepth": "Avg. Depth to Groundwater ({{location}}):",
     "groundwaterDepthValue": "{{depth}} meters",
-    "hydroNoteTitle": "Hydrogeologist's Note:",
-    "hydroNoteDisclaimer": "(Note: This note is AI-generated in English for technical accuracy.)",
     "downloadPdfButton": "Download PDF Report",
     "startNewButton": "Start New Assessment"
   }

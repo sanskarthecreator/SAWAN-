@@ -89,8 +89,6 @@
     "aquiferTitle": "স্থানীয় ভূগর্ভস্থ জলস্তর ডেটা",
     "groundwaterDepth": "ভূগর্ভস্থ জলের গড় গভীরতা ({{location}}):",
     "groundwaterDepthValue": "{{depth}} মিটার",
-    "hydroNoteTitle": "হাইড্রোজোলজিস্টের নোট:",
-    "hydroNoteDisclaimer": "(দ্রষ্টব্য: এই নোটটি প্রযুক্তিগত নির্ভুলতার জন্য এআই দ্বারা ইংরেজিতে তৈরি করা হয়েছে।)",
     "downloadPdfButton": "পিডিএফ রিপোর্ট ডাউনলোড করুন",
     "startNewButton": "নতুন মূল্যায়ন শুরু করুন"
   }

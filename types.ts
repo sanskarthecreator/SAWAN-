@@ -44,6 +44,5 @@ export interface ResultsData {
   totalEstimatedCost: number;
   recommendedStructures: RecommendedStructure[];
   averageDepthToGroundwater: number;
-  aquiferNote: string;
   locationName: string;
 }

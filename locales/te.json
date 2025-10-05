@@ -89,8 +89,6 @@
     "aquiferTitle": "స్థానిక జలాశయ డేటా",
     "groundwaterDepth": "భూగర్భ జలాల సగటు లోతు ({{location}}):",
     "groundwaterDepthValue": "{{depth}} మీటర్లు",
-    "hydroNoteTitle": "హైడ్రోజియాలజిస్ట్ గమనిక:",
-    "hydroNoteDisclaimer": "(గమనిక: ఈ గమనిక సాంకేతిక ఖచ్చితత్వం కోసం AI ద్వారా ఆంగ్లంలో రూపొందించబడింది.)",
     "downloadPdfButton": "PDF నివేదికను డౌన్‌లోడ్ చేయండి",
     "startNewButton": "కొత్త మదింపును ప్రారంభించండి"
   }

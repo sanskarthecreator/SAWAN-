@@ -89,8 +89,6 @@
     "aquiferTitle": "உள்ளூர் நிலத்தடி நீர் தரவு",
     "groundwaterDepth": "நிலத்தடி நீரின் சராசரி ஆழம் ({{location}}):",
     "groundwaterDepthValue": "{{depth}} மீட்டர்கள்",
-    "hydroNoteTitle": "ஹைட்ரோஜியாலஜிஸ்ட் குறிப்பு:",
-    "hydroNoteDisclaimer": "(குறிப்பு: இந்தக் குறிப்பு தொழில்நுட்பத் துல்லியத்திற்காக AI மூலம் ஆங்கிலத்தில் உருவாக்கப்பட்டது.)",
     "downloadPdfButton": "PDF அறிக்கையைப் பதிவிறக்கு",
     "startNewButton": "புதிய மதிப்பீட்டைத் தொடங்கு"
   }
